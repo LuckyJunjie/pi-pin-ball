@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://theme_android"]
+
+[ext_resource type="Script" path="res://scripts/ThemeArea.gd" id="1_theme"]
+
+[sub_resource type="RectangleShape2D" id="RectShape_bonus"]
+size = Vector2(80, 40)
+
+[node name="ThemeArea" type="Area2D"]
+script = ExtResource("1_theme")
+theme_name = "Android Acres"
+difficulty = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0)
+shape = SubResource("RectShape_bonus")
+
+[node name="Sprite2D" type="ColorRect" parent="."]
+color = Color(0.2, 0.8, 0.2, 0.5)
+custom_minimum_size = Vector2(80, 40)
+
+[node name="Label" type="Label" parent="."]
+text = "+100"
+horizontal_alignment = 1
+vertical_alignment = 1
