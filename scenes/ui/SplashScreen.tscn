@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://splash"]
+
+[ext_resource type="Script" path="res://scripts/SplashScreen.gd" id="1_splash"]
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_splash")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.1, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer"]
+theme_override_constants/separation = 30
+
+[node name="LogoLabel" type="Label" parent="CenterContainer/VBox"]
+text = "🎮"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBox"]
+text = "PI-PinBall"
+horizontal_alignment = 1
+
+[node name="VersionLabel" type="Label" parent="CenterContainer/VBox"]
+text = "v0.1.0"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/VBox"]
+custom_minimum_size = Vector2(300, 20)
+
+[node name="LoadingLabel" type="Label" parent="CenterContainer/VBox"]
+text = "加载中..."
+horizontal_alignment = 1
