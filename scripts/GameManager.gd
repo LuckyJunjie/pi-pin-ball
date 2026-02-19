@@ -30,11 +30,21 @@ var high_score: int = 0
 var _hit_areas: Dictionary = {}  # {Area: last_hit_time}
 var _combo_timeout: float = 2.0
 
+## 角色系统
+var character_system: Node = null
+
 ## 生命周期
 
 func _ready() -> void:
 	instance = self
 	_load_high_score()
+	_initialize_character_system()
+
+func _initialize_character_system() -> void:
+	# 创建角色系统
+	character_system = load("res://scripts/CharacterSystem.gd").new()
+	add_child(character_system)
+	print("GameManager: 角色系统已初始化")
 
 func _process(_delta: float) -> void:
 	# 检查连击超时
@@ -46,8 +56,15 @@ func add_score(points: int) -> void:
 	if current_state != GameState.PLAYING:
 		return
 	
-	game_score += points
-	total_score += points
+	# 应用角色得分加成
+	var character_bonus: float = 1.0
+	if character_system and character_system.has_method("get_multiplier"):
+		character_bonus = character_system.get_multiplier(character_system.current_character_id)
+	
+	var final_points: int = int(points * character_bonus)
+	
+	game_score += final_points
+	total_score += final_points
 	
 	# 更新最高分
 	if total_score > high_score:
