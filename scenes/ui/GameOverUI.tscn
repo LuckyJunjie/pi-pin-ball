@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://game_over"]
+
+[ext_resource type="Script" path="res://scripts/GameOverUI.gd" id="1_go"]
+
+[node name="GameOverUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_go")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 0.9)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer"]
+theme_override_constants/separation = 30
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBox"]
+text = "🏁 游戏结束"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBox"]
+text = "本次得分: 0"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="CenterContainer/VBox"]
+text = "最高分: 0"
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="CenterContainer/VBox"]
+text = "统计信息"
+horizontal_alignment = 1
+
+[node name="NewHighScoreLabel" type="Label" parent="CenterContainer/VBox"]
+text = "🎉 新纪录!"
+horizontal_alignment = 1
+modulate = Color(1, 0.8, 0.2, 1)
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="CenterContainer/VBox"]
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBox/ButtonsVBox"]
+text = "🔄 再来一局"
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/VBox/ButtonsVBox"]
+text = "🏠 主菜单"
