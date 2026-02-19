@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://main_scene"]
+[gd_scene load_steps=5 format=3 uid="uid://main_scene"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_main"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="2_manager"]
+[ext_resource type="PackedScene" uid="uid://launcher_scene" path="res://scenes/components/Launcher.tscn" id="3_launcher"]
+[ext_resource type="PackedScene" uid="uid://flipper_scene" path="res://scenes/components/Flipper.tscn" id="4_flipper"]
 
 [sub_resource type="RectangleShape2D" id="RectShape_wall"]
 size = Vector2(1152, 20)
@@ -68,3 +70,11 @@ offset_right = 100.0
 offset_bottom = -20.0
 horizontal_alignment = 2
 text = "Balls: 3"
+
+[node name="Launcher" parent="." instance=ExtResource("3_launcher")]
+
+[node name="LeftFlipper" parent="." instance=ExtResource("4_flipper")]
+position = Vector2(200, 500)
+
+[node name="RightFlipper" parent="." instance=ExtResource("4_flipper")]
+position = Vector2(900, 500)

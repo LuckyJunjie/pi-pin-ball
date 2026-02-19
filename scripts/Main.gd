@@ -6,9 +6,9 @@ extends Node2D
 @onready var score_label: Label = $UI/ScoreLabel
 @onready var multiplier_label: Label = $UI/MultiplierLabel
 @onready var balls_label: Label = $UI/BallsLabel
-
-var launcher: Node2D
-var drain_area: Area2D
+@onready var launcher: Node2D = $Launcher
+@onready var left_flipper: Node2D = $LeftFlipper
+@onready var right_flipper: Node2D = $RightFlipper
 
 func _ready() -> void:
 	# 连接GameManager信号
@@ -34,6 +34,19 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		if GameManager.current_state == GameManager.GameState.WAITING:
 			GameManager.start_game()
+		elif GameManager.is_playing():
+			# 右挡板控制
+			right_flipper.set("pressed_angle", 45)
+	
+	if Input.is_action_just_released("ui_accept"):
+		if GameManager.is_playing():
+			right_flipper.set("pressed_angle", 0)
+	
+	# 左挡板控制
+	if Input.is_action_pressed("ui_left"):
+		left_flipper.set("pressed_angle", 45)
+	else:
+		left_flipper.set("pressed_angle", 0)
 
 func _on_game_started() -> void:
 	print("Game started!")
