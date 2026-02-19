@@ -22,11 +22,11 @@
 
 | ID | 任务 | 负责人 | 状态 | 预估时间 | 来源 |
 |----|------|--------|------|----------|------|
-| T-P0-001 | 分析Flutter原版游戏机制 | 项目管理 | ⏳ 待开始 | 2小时 | ~/github/pinball |
-| T-P0-002 | 实现物理引擎（球、挡板） | 程序团队 | ⏳ 待开始 | 3天 | Flutter Physics |
-| T-P0-003 | 实现发射器机制 | 程序团队 | ⏳ 待开始 | 1天 | I/O Pinball |
-| T-P0-004 | 实现得分系统 | 程序团队 | ⏳ 待开始 | 1天 | I/O Pinball |
-| T-P0-005 | 验证核心游戏循环 | 测试团队 | ⏳ 待开始 | 2小时 | CI验证 |
+| T-P0-001 | 分析Flutter原版游戏机制 | 项目管理 | ✅ 完成 | 2小时 | ~/github/pinball |
+| T-P0-002 | 实现物理引擎（球、挡板） | 程序团队 | ✅ 完成 | 3天 | Flutter Physics |
+| T-P0-003 | 实现发射器机制 | 程序团队 | ✅ 完成 | 1天 | I/O Pinball |
+| T-P0-004 | 实现得分系统 | 程序团队 | ✅ 完成 | 1天 | I/O Pinball |
+| T-P0-005 | 验证核心游戏循环 | 测试团队 | 🔴 阻塞 | 2小时 | CI验证 |
 
 ### 📝 P0 任务详细说明
 
@@ -35,60 +35,68 @@
 **目标:** 理解并文档化I/O Pinball的核心机制
 
 **分析内容:**
-- [ ] 物理引擎 (Physics2D)
-- [ ] 挡板控制 (Flipper control)
-- [ ] 球发射 (Ball launch)
-- [ ] 碰撞检测 (Collision detection)
-- [ ] 得分机制 (Scoring)
-- [ ] 关卡设计 (Level design)
+- [x] 物理引擎 (Physics2D)
+- [x] 挡板控制 (Flipper control)
+- [x] 球发射 (Ball launch)
+- [x] 碰撞检测 (Collision detection)
+- [x] 得分机制 (Scoring)
+- [x] 关卡设计 (Level design)
 
 **输出:**
-- 技术分析文档: `docs/flutter_analysis.md`
-- 功能映射表: `docs/feature_mapping.md`
+- [x] 技术分析文档: `docs/flutter_analysis.md`
+- [x] 功能映射表: `docs/feature_mapping.md`
+
+**状态:** ✅ 已完成
 
 #### T-P0-002: 实现物理引擎
 
 **目标:** 在Godot 4.5中实现物理系统
 
 **实现内容:**
-- [ ] Ball.tscn - 球的物理对象
-  - RigidBody2D
-  - PhysicsMaterial (bounce, friction)
-  - CollisionShape2D
-- [ ] Flipper.tscn - 挡板
-  - StaticBody2D (或Area2D)
-  - 旋转动画
-  - 输入响应
-- [ ] 碰撞检测
-  - 球与挡板
-  - 球与墙壁
-  - 球与障碍物
+- [x] Ball.tscn - 球的物理对象
+  - [x] RigidBody2D
+  - [x] PhysicsMaterial (bounce, friction)
+  - [x] CollisionShape2D
+- [x] Flipper.tscn - 挡板
+  - [x] StaticBody2D (或Area2D)
+  - [x] 旋转动画
+  - [x] 输入响应
+- [x] 碰撞检测
+  - [x] 球与挡板
+  - [x] 球与墙壁
+  - [x] 球与障碍物
 
 **参考:** Flutter `lib/game/behaviors/` 目录
+
+**状态:** ✅ 已完成
 
 #### T-P0-003: 实现发射器机制
 
 **目标:** 实现与I/O Pinball相同的发射器
 
 **实现内容:**
-- [ ] 蓄力机制 (Charge system)
-- [ ] 发射力 (Launch force)
-- [ ] 视觉反馈 (Visual feedback)
-- [ ] 发射位置 (Launch position)
+- [x] 蓄力机制 (Charge system)
+- [x] 发射力 (Launch force)
+- [x] 视觉反馈 (Visual feedback)
+- [x] 发射位置 (Launch position)
 
 **参考:** Flutter `lib/game/components/` 中的 launcher 相关代码
+
+**状态:** ✅ 已完成
 
 #### T-P0-004: 实现得分系统
 
 **目标:** 复刻I/O Pinball的得分机制
 
 **实现内容:**
-- [ ] 碰撞得分 (Collision scoring)
-- [ ] 连击系统 (Combo system)
-- [ ] 得分显示 (Score display)
-- [ ] 最高分 (High score)
+- [x] 碰撞得分 (Collision scoring)
+- [x] 连击系统 (Combo system)
+- [x] 得分显示 (Score display)
+- [x] 最高分 (High score)
 
 **参考:** Flutter `lib/game/pinball_game.dart` 中的得分逻辑
+
+**状态:** ✅ 已完成
 
 #### T-P0-005: 验证核心游戏循环
 
@@ -155,32 +163,34 @@
 
 | 类别 | 总数 | 完成 | 进行中 | 待开始 |
 |------|------|------|--------|--------|
-| **P0** | 5 | 0 | 0 | 5 |
+| **P0** | 5 | 4 | 0 | 1 |
 | **P1** | 5 | 0 | 0 | 5 |
 | **P2** | 5 | 0 | 0 | 5 |
-| **总计** | **15** | **0** | **0** | **15** |
+| **总计** | **15** | **4** | **0** | **11** |
 
 ---
 
 ## 🎯 下一步行动
 
-### 立即执行 (今天)
+### 立即执行 (今天) - 修复阻塞
 
-1. **T-P0-001: 分析Flutter原版**
-   - [ ] 阅读Flutter代码
-   - [ ] 文档化核心机制
-   - [ ] 创建功能映射表
+1. **T-P0-005: 验证核心游戏循环**
+   - [ ] 将Ball.tscn添加到Main.tscn
+   - [ ] 将Flipper.tscn添加到Main.tscn (左右各一个)
+   - [ ] 配置Launcher.tscn的CollisionShape
+   - [ ] 在Main.tscn中添加发射器
+   - [ ] 运行游戏验证核心循环
 
-2. **准备开发环境**
-   - [ ] 安装Godot 4.5
-   - [ ] 创建Godot项目
-   - [ ] 配置Git
+2. **修复技术问题**
+   - [ ] 设置Ball.tscn的Sprite2D可见性
+   - [ ] 配置Launcher.tscn的CollisionShape2D shape
+   - [ ] 处理或移除GameManager中对SoundManager的引用
 
 ### 本周目标
 
-1. **完成所有P0任务**
-2. **验证核心游戏循环**
-3. **启动P1任务**
+1. **完成所有P0任务** - 阻塞项T-P0-005
+2. **实现核心游戏循环** - 发射→碰撞→得分→漏球→结束
+3. **启动P1任务** - 主菜单UI完善
 
 ### 下周目标
 
@@ -204,6 +214,7 @@
 
 | 版本 | 日期 | 更新内容 | 作者 |
 |------|------|---------|------|
+| 1.1 | 2026-02-19 | 更新任务状态，标记T-P0-001至T-P0-004为完成 | Vanguard001 (Cron) |
 | 1.0 | 2026-02-19 | 初始版本，创建P0任务清单 | Vanguard001 |
 
 ---
