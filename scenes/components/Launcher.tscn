@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://launcher_scene"]
+[gd_scene load_steps=3 format=3 uid="uid://launcher_scene"]
 
 [ext_resource type="Script" path="res://scripts/Launcher.gd" id="1_launcher"]
+
+[sub_resource type="RectangleShape2D" id="RectShape_launcher"]
+size = Vector2(60, 80)
 
 [node name="Launcher" type="Node2D"]
 position = Vector2(720, 450)
@@ -9,10 +12,4 @@ script = ExtResource("1_launcher")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-
-[sub_resource type="RectangleShape2D" id="RectShape_launcher"]
-size = Vector2(60, 80)
-
-[node name="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectShape_launcher")

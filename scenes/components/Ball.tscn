@@ -16,4 +16,4 @@ script = ExtResource("1_ball")
 shape = SubResource("CircleShape_ball")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
+visible = true

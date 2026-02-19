@@ -16,4 +16,4 @@ script = ExtResource("1_flipper")
 shape = SubResource("RectangleShape_flipper")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
+visible = true
