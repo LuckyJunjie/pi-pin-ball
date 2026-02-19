@@ -55,6 +55,9 @@ func add_score(points: int) -> void:
 		_save_high_score()
 	
 	emit_signal("score_changed", game_score)
+	
+	# 播放得分音效
+	SoundManager.play_sfx("score")
 
 func get_multiplier() -> int:
 	return game_multiplier
@@ -63,6 +66,7 @@ func increase_multiplier() -> void:
 	if game_multiplier < 10:  # 最大倍率
 		game_multiplier += 1
 		emit_signal("multiplier_changed", game_multiplier)
+		SoundManager.play_sfx("multiplier")
 
 func reset_multiplier() -> void:
 	game_multiplier = 1
@@ -85,6 +89,8 @@ func start_game() -> void:
 	remaining_balls = 3
 	reset_score()
 	emit_signal("game_started")
+	
+	SoundManager.play_music("gameplay")
 
 func pause_game() -> void:
 	if current_state != GameState.PLAYING:
@@ -92,6 +98,7 @@ func pause_game() -> void:
 	
 	current_state = GameState.PAUSED
 	emit_signal("game_paused", true)
+	SoundManager.stop_music()
 
 func resume_game() -> void:
 	if current_state != GameState.PAUSED:
@@ -99,10 +106,13 @@ func resume_game() -> void:
 	
 	current_state = GameState.PLAYING
 	emit_signal("game_paused", false)
+	SoundManager.play_music("gameplay")
 
 func end_game() -> void:
 	current_state = GameState.GAME_OVER
 	emit_signal("game_over")
+	SoundManager.play_sfx("game_over")
+	SoundManager.stop_music()
 
 func ball_lost() -> void:
 	if current_state != GameState.PLAYING:
@@ -111,6 +121,8 @@ func ball_lost() -> void:
 	remaining_balls -= 1
 	emit_signal("balls_changed", remaining_balls)
 	emit_signal("ball_lost")
+	
+	SoundManager.play_sfx("lose_ball")
 	
 	if remaining_balls <= 0:
 		end_game()
