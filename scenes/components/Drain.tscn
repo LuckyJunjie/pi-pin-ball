@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://drain_scene"]
+
+[ext_resource type="Script" path="res://scripts/ScoringArea.gd" id="1_drain"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_drain"]
+size = Vector2(100, 20)
+
+[node name="Drain" type="Area2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_drain")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape_drain")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false

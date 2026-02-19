@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ball_scene"]
+
+[ext_resource type="Script" path="res://scripts/Ball.gd" id="1_ball"]
+
+[sub_resource type="CircleShape2D" id="CircleShape_ball"]
+radius = 10.0
+
+[node name="Ball" type="RigidBody2D"]
+gravity_scale = 1.0
+physics_material_override = null
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("1_ball")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape_ball")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false

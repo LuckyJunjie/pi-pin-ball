@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=3 uid="uid://main_menu"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_menu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.2, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 48
+text = "PI-PINBALL"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 160.0
+offset_right = 300.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 24
+text = "Flutter I/O Pinball Port"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = -100.0
+theme_override_font_sizes/font_size = 24
+text = "START GAME"
+
+[node name="Instructions" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -80.0
+offset_right = 300.0
+offset_bottom = -40.0
+theme_override_font_sizes/font_size = 16
+text = "SPACE: Launch | A/D: Flippers | ESC: Pause"
+horizontal_alignment = 1
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -30.0
+offset_right = 200.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 12
+text = "v1.0.0 - Godot 4.5"

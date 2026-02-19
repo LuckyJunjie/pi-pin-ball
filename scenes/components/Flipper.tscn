@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://flipper_scene"]
+
+[ext_resource type="Script" path="res://scripts/Flipper.gd" id="1_flipper"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_flipper"]
+size = Vector2(80, 15)
+
+[node name="Flipper" type="StaticBody2D"]
+position = Vector2(0, 0)
+rotation = 0.0
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_flipper")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape_flipper")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
