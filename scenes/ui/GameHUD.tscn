@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://game_hud"]
+
+[ext_resource type="Script" path="res://scripts/GameHUD.gd" id="1_hud"]
+
+[node name="GameHUD" type="CanvasLayer"]
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="ScorePanel" type="PanelContainer" parent="TopBar"]
+custom_minimum_size = Vector2(200, 50)
+
+[node name="ScoreLabel" type="Label" parent="TopBar/ScorePanel"]
+text = "分数: 0"
+
+[node name="Spacer" type="Control" parent="TopBar"]
+size_flags_horizontal = 3
+
+[node name="ComboPanel" type="PanelContainer" parent="TopBar"]
+custom_minimum_size = Vector2(150, 50)
+
+[node name="ComboLabel" type="Label" parent="TopBar/ComboPanel"]
+text = "x1"
+
+[node name="BallPanel" type="PanelContainer" parent="TopBar"]
+custom_minimum_size = Vector2(120, 50)
+
+[node name="BallsLabel" type="Label" parent="TopBar/BallPanel"]
+text = "球: 3"
+
+[node name="LevelPanel" type="PanelContainer" parent="TopBar"]
+custom_minimum_size = Vector2(150, 50)
+
+[node name="LevelLabel" type="Label" parent="TopBar/LevelPanel"]
+text = "关卡: 1"
