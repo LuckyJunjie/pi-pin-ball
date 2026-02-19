@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://test_scene"]
+
+[ext_resource type="PackedScene" uid="uid://main_scene" path="res://scenes/Main.tscn" id="1_main"]
+[ext_resource type="Script" path="res://scripts/GameLoopTest.gd" id="2_test"]
+
+[node name="GameLoopTest" type="Node2D"]
+script = ExtResource("2_test")
