@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://pause_menu"]
+
+[ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="1_pause"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer"]
+theme_override_constants/separation = 30
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBox"]
+text = "⏸️ 暂停"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBox"]
+text = "▶️ 继续游戏"
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBox"]
+text = "🔄 重新开始"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBox"]
+text = "⚙️ 设置"
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/VBox"]
+text = "🏠 主菜单"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBox"]
+text = "❌ 退出游戏"
