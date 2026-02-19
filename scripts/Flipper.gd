@@ -83,6 +83,10 @@ func _apply_ball_force(ball: RigidBody2D) -> void:
 
 ## 公共方法
 
+func set_pressed(pressed: bool) -> void:
+	if pressed != _is_pressed:
+		_is_pressed = pressed
+
 func is_pressed() -> bool:
 	return _is_pressed
 

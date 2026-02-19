@@ -89,6 +89,13 @@ func _load_ball() -> void:
 
 ## 公共方法
 
+func launch() -> void:
+	"""外部调用发射球"""
+	if _has_ball:
+		_start_charging()
+		# 立即发射
+		_launch_ball()
+
 func get_charge_level() -> float:
 	return _charge_level
 

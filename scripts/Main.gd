@@ -21,6 +21,16 @@ func _ready() -> void:
 	
 	# 等待开始游戏
 	GameManager.current_state = GameManager.GameState.WAITING
+	
+	# 确保发射器有正确的位置
+	if launcher:
+		launcher.global_position = Vector2(720, 450)
+	
+	# 确保挡板在正确位置
+	if left_flipper:
+		left_flipper.global_position = Vector2(200, 500)
+	if right_flipper:
+		right_flipper.global_position = Vector2(900, 500)
 
 func _process(_delta: float) -> void:
 	# 处理输入
@@ -30,39 +40,46 @@ func _process(_delta: float) -> void:
 		elif GameManager.current_state == GameManager.GameState.PAUSED:
 			GameManager.resume_game()
 	
-	# 开始游戏
+	# 开始游戏 / 发射球
 	if Input.is_action_just_pressed("ui_accept"):
 		if GameManager.current_state == GameManager.GameState.WAITING:
 			GameManager.start_game()
-		elif GameManager.is_playing():
-			# 右挡板控制
-			right_flipper.set("pressed_angle", 45)
+			# 发射球
+			if launcher and launcher.has_method("launch"):
+				launcher.launch()
 	
-	if Input.is_action_just_released("ui_accept"):
-		if GameManager.is_playing():
-			right_flipper.set("pressed_angle", 0)
+	# 左挡板控制 (A键)
+	if left_flipper and left_flipper.has_method("set_pressed"):
+		if Input.is_action_pressed("ui_left"):
+			left_flipper.set_pressed(true)
+		else:
+			left_flipper.set_pressed(false)
 	
-	# 左挡板控制
-	if Input.is_action_pressed("ui_left"):
-		left_flipper.set("pressed_angle", 45)
-	else:
-		left_flipper.set("pressed_angle", 0)
+	# 右挡板控制 (D键)
+	if right_flipper and right_flipper.has_method("set_pressed"):
+		if Input.is_action_pressed("ui_right"):
+			right_flipper.set_pressed(true)
+		else:
+			right_flipper.set_pressed(false)
 
 func _on_game_started() -> void:
-	print("Game started!")
-	# 这里会生成球
+	print("[Main] Game started!")
+	# 生成球
 
 func _on_score_changed(new_score: int) -> void:
-	score_label.text = "Score: " + str(new_score)
+	if score_label:
+		score_label.text = "Score: " + str(new_score)
 
 func _on_multiplier_changed(new_mult: int) -> void:
-	multiplier_label.text = "Multiplier: x" + str(new_mult)
+	if multiplier_label:
+		multiplier_label.text = "Multiplier: x" + str(new_mult)
 
 func _on_balls_changed(remaining: int) -> void:
-	balls_label.text = "Balls: " + str(remaining)
+	if balls_label:
+		balls_label.text = "Balls: " + str(remaining)
 
 func _on_game_over() -> void:
-	print("Game Over! Final Score: " + str(GameManager.get_score()))
+	print("[Main] Game Over! Final Score: " + str(GameManager.get_score()))
 
 func _on_ball_lost() -> void:
-	print("Ball lost! Remaining: " + str(GameManager.get_remaining_balls()))
+	print("[Main] Ball lost! Remaining: " + str(GameManager.get_remaining_balls()))
