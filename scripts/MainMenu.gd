@@ -110,8 +110,56 @@ func _show_instructions() -> void:
 	add_child(panel)
 
 func _show_settings() -> void:
-	# TODO: 实现设置菜单
-	print("Settings menu - TODO")
+	# 创建设置面板
+	var panel = Panel.new()
+	panel.set_anchors_preset(Control.PRESET_CENTER)
+	panel.size = Vector2(500, 400)
+	panel.color = Color(0.1, 0.1, 0.15, 0.95)
+	
+	var vbox = VBoxContainer.new()
+	vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
+	vbox.add_theme_constant_override("separation", 20)
+	
+	var title = Label.new()
+	title.text = "⚙️ 设置"
+	title.horizontal_alignment = HorizontalAlignment.CENTER
+	title.add_theme_font_size_override("font_size", 32)
+	vbox.add_child(title)
+	
+	var sound_label = Label.new()
+	sound_label.text = "🔊 音效音量"
+	vbox.add_child(sound_label)
+	
+	var sound_slider = HSlider.new()
+	sound_slider.min_value = 0
+	sound_slider.max_value = 100
+	sound_slider.value = 80
+	sound_slider.custom_minimum_size = Vector2(300, 20)
+	vbox.add_child(sound_slider)
+	
+	var music_label = Label.new()
+	music_label.text = "🎵 音乐音量"
+	vbox.add_child(music_label)
+	
+	var music_slider = HSlider.new()
+	music_slider.min_value = 0
+	music_slider.max_value = 100
+	music_slider.value = 60
+	music_slider.custom_minimum_size = Vector2(300, 20)
+	vbox.add_child(music_slider)
+	
+	var spacer = Control.new()
+	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	vbox.add_child(spacer)
+	
+	var close_button = Button.new()
+	close_button.text = "关闭"
+	close_button.custom_minimum_size = Vector2(150, 50)
+	close_button.pressed.connect(panel.queue_free)
+	vbox.add_child(close_button)
+	
+	panel.add_child(vbox)
+	add_child(panel)
 
 func _confirm_quit() -> bool:
 	# 简单的确认对话框
