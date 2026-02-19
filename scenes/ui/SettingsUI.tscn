@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://settings_ui"]
+
+[ext_resource type="Script" path="res://scripts/SettingsUI.gd" id="1_sett"]
+
+[node name="SettingsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sett")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 30.0
+offset_right = 100.0
+offset_bottom = 80.0
+grow_horizontal = 2
+text = "⚙️ 设置"
+horizontal_alignment = 1
+
+[node name="SettingsScroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsVBox" type="VBoxContainer" parent="SettingsScroll"]
+custom_minimum_size = Vector2(600, 400)
+
+[node name="SoundSection" type="VBoxContainer" parent="SettingsScroll/SettingsVBox"]
+
+[node name="SoundLabel" type="Label" parent="SettingsScroll/SettingsVBox/SoundSection"]
+text = "🔊 音效"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsScroll/SettingsVBox/SoundSection"]
+
+[node name="MusicSlider" type="HSlider" parent="SettingsScroll/SettingsVBox/SoundSection"]
+
+[node name="DisplaySection" type="VBoxContainer" parent="SettingsScroll/SettingsVBox"]
+
+[node name="DisplayLabel" type="Label" parent="SettingsScroll/SettingsVBox/DisplaySection"]
+text = "🖥️ 显示"
+
+[node name="FullscreenCheck" type="CheckBox" parent="SettingsScroll/SettingsVBox/DisplaySection"]
+
+[node name="VSYNCCheck" type="CheckBox" parent="SettingsScroll/SettingsVBox/DisplaySection"]
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -80.0
+offset_right = 100.0
+offset_bottom = -30.0
+grow_horizontal = 2
+text = "← 返回"
