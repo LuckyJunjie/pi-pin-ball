@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ball_scene"]
+[gd_scene load_steps=4 format=3 uid="uid://ball_scene"]
 
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="1_ball"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_ball"]
+radius = 10.0
+
+[sub_resource type="CircleShape2D" id="PolygonShape_ball"]
 radius = 10.0
 
 [node name="Ball" type="RigidBody2D"]
@@ -15,5 +18,6 @@ script = ExtResource("1_ball")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape_ball")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = true
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0.9, 0.2, 1)
+polygon = PackedVector2Array([Vector2(0, -10), Vector2(7, -7), Vector2(10, 0), Vector2(7, 7), Vector2(0, 10), Vector2(-7, 7), Vector2(-10, 0), Vector2(-7, -7)])

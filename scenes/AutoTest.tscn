@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://test_main_scene"]
+
+[ext_resource type="PackedScene" uid="uid://main_scene" path="res://scenes/Main.tscn" id="1_main"]
+
+[node name="AutoTest" type="Node2D"]
+
+[node name="Main" parent="." instance=ExtResource("1_main")]
+
+[node name="AutoTestRunner" type="Node" parent="."]
+script = null
