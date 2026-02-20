@@ -9,10 +9,10 @@
 ## 🚨 阻塞任务 (需优先处理)
 
 ### 音频资源收集
-- [ ] 确认音效风格偏好 (需要人工决策)
+- [x] 确认音效风格偏好 (复古 8-bit) ✅
 - [ ] 创建 assets/audio/sfx/ 目录
 - [ ] 创建 assets/audio/music/ 目录
-- [ ] 下载/创建音效文件
+- [ ] 下载/创建音效文件 (由 CodeForge 提交 Windows 上的资源)
   - [ ] launch.wav - 发射音效
   - [ ] flipper.wav - 挡板音效
   - [ ] collision.wav - 碰撞音效
