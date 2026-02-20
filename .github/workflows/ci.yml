@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: '3.11'
       
+      - name: Install Pillow
+        run: pip install Pillow
+      
       - name: Install GDScript linter
         run: pip install gdscript-doc-maker
       
@@ -161,6 +164,6 @@ PYEOF
             echo "No changes to commit"
           else
             git commit -m "docs: Update game screenshot $(date '+%Y-%m-%d %H:%M')"
-            git push origin main
+            git push origin master
             echo "✓ Screenshot synced to repository"
           fi
