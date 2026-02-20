@@ -207,6 +207,7 @@
    - ✅ CharacterSystem - 已实现，待集成
    - ⚠️ SoundManager - 框架就绪，缺资源
    - ✅ LevelManager - 已实现，待测试
+   - ✅ pending_tasks.md - 已创建，记录阻塞任务
 2. **创建第一个主题区域**
    - [ ] 实现Android Acres障碍物布局
    - [ ] 测试主题切换效果
