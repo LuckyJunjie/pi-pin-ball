@@ -29,39 +29,50 @@ func _ready() -> void:
 	# 设置版本信息
 	version_label.text = "v0.1.0"
 	
-	# 播放菜单音乐
-	SoundManager.play_music("menu")
+	# 播放菜单音乐 - 使用延迟调用确保 SoundManager 已加载
+	if has_node("/root/SoundManager"):
+		call_deferred("_play_menu_music")
 
 func _process(_delta: float) -> void:
 	# ESC键退出
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 
+func _play_menu_music() -> void:
+	var sm = get_node("/root/SoundManager")
+	if sm:
+		sm.play_music("menu")
+
+func _play_sound(sfx_name: String) -> void:
+	var sm = get_node("/root/SoundManager")
+	if sm:
+		sm.play_sfx(sfx_name)
+
 ## 按钮回调
 
 func _on_start_pressed() -> void:
-	SoundManager.play_sfx("button_click")
+	_play_sound("button_click")
 	emit_signal("start_game_pressed")
 	
 	# 切换到游戏场景
 	get_tree().change_scene_to_file("res://scenes/Main.tscn")
 
 func _on_instructions_pressed() -> void:
-	SoundManager.play_sfx("button_click")
+	_play_sound("button_click")
 	emit_signal("instructions_pressed")
 	
 	# 显示操作说明
 	_show_instructions()
 
 func _on_settings_pressed() -> void:
-	SoundManager.play_sfx("button_click")
+	_play_sound("button_click")
 	emit_signal("settings_pressed")
 	
 	# 打开设置菜单
 	_show_settings()
 
 func _on_quit_pressed() -> void:
-	SoundManager.play_sfx("button_click")
+	_play_sound("button_click")
 	emit_signal("quit_pressed")
 	
 	# 确认退出
@@ -96,8 +107,8 @@ func _show_instructions() -> void:
 - 保持小球不落入底部
 """
 	label.set_anchors_preset(Control.PRESET_FULL_RECT)
-	label.horizontal_alignment = HorizontalAlignment.CENTER
-	label.vertical_alignment = VerticalAlignment.CENTER
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	
 	var close_button = Button.new()
 	close_button.text = "关闭"
@@ -122,7 +133,7 @@ func _show_settings() -> void:
 	
 	var title = Label.new()
 	title.text = "⚙️ 设置"
-	title.horizontal_alignment = HorizontalAlignment.CENTER
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 32)
 	vbox.add_child(title)
 	
