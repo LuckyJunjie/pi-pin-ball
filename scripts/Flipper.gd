@@ -14,7 +14,8 @@ extends StaticBody2D
 @export var impact_force: float = 500.0         # 碰撞时施加的力
 
 @export_group("输入")
-@export var input_action: StringName = "ui_accept"  # 输入动作名称
+@export var input_action_left: StringName = "ui_left"   # 左挡板
+@export var input_action_right: StringName = "ui_right"  # 右挡板
 
 ## 信号
 signal flipped(is_pressed: bool)
@@ -42,7 +43,12 @@ func _physics_process(delta: float) -> void:
 
 func _handle_input(delta: float) -> void:
 	var was_pressed: bool = _is_pressed
-	_is_pressed = Input.is_action_pressed(input_action)
+	
+	# 根据挡板类型检测不同的输入
+	if name.contains("Left"):
+		_is_pressed = Input.is_action_pressed(input_action_left)
+	else:
+		_is_pressed = Input.is_action_pressed(input_action_right)
 	
 	# 检测状态变化
 	if was_pressed != _is_pressed:
@@ -71,7 +77,7 @@ func _on_body_entered(body: Node) -> void:
 		emit_signal("hit_ball", body)
 		
 		# 播放音效
-		GameManager.play_sound("flipper_click")
+		SoundManager.play_sfx("flipper_click")
 
 func _apply_ball_force(ball: RigidBody2D) -> void:
 	# 计算力的方向和大小

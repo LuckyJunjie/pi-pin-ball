@@ -17,7 +17,7 @@ func _ready() -> void:
 	GameManager.multiplier_changed.connect(_on_multiplier_changed)
 	GameManager.balls_changed.connect(_on_balls_changed)
 	GameManager.game_over.connect(_on_game_over)
-	GameManager.ball_lost.connect(_on_ball_lost)
+	GameManager.ball_lost_signal.connect(_on_ball_lost)
 	
 	# 等待开始游戏
 	GameManager.current_state = GameManager.GameState.WAITING
