@@ -22,9 +22,9 @@ func _ready() -> void:
 	# 等待开始游戏
 	GameManager.current_state = GameManager.GameState.WAITING
 	
-	# 确保发射器有正确的位置
+	# 确保发射器有正确的位置 (Open GDD: 700, 450)
 	if launcher:
-		launcher.global_position = Vector2(720, 450)
+		launcher.global_position = Vector2(700, 450)
 	
 	# 确保挡板在正确位置
 	if left_flipper:

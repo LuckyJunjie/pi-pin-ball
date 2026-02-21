@@ -14,7 +14,7 @@ signal ball_loaded()
 @export var charge_speed: float = 500.0
 
 @export_group("位置")
-@export var launch_position: Vector2 = Vector2(720, 450)
+@export var launch_position: Vector2 = Vector2(700, 450)  # Open GDD规范
 @export var ball_offset: Vector2 = Vector2(0, -20)
 
 @export_group("输入")
