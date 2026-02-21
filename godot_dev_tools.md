@@ -59,6 +59,28 @@
 - 游戏状态管理
 - UI交互
 
+### 4. 截图验证测试 (类似Jest)
+
+**作用**: 视觉回归测试，确保UI/场景渲染正确
+
+**实现文件**:
+- `test/screenshot_test_base.gd` - 截图测试基类
+- `test/screenshot_testing.md` - 详细文档
+- `test/run_screenshot_tests.sh` - 运行脚本
+
+**功能**:
+- 像素级截图对比
+- 自动生成差异图
+- 可配置相似度阈值 (默认95%)
+- 支持CI/CD集成
+
+**类似Jest的工具**:
+| Jest | PI-PinBall |
+|------|------------|
+| jest-image-snapshot | screenshot_test_base.gd |
+| toMatchImageSnapshot | compare_screenshots() |
+| updateSnapshot | update_baseline() |
+
 ---
 
 ## 验证工作流

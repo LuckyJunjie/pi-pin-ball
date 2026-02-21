@@ -194,7 +194,27 @@ Type:
 | **单元测试** | 单个函数验证 | 程序团队 |
 | **集成测试** | 多模块协同 | 程序团队 |
 | **功能测试** | 完整功能验证 | 测试团队 |
+| **截图测试** | 视觉回归验证 (类似Jest) | 程序团队 |
 | **验收测试** | 最终验收 | 项目管理 |
+
+### 📷 截图测试 (类似Jest)
+
+使用 `test/screenshot_test_base.gd` 进行视觉回归测试:
+
+```bash
+# 运行截图测试
+./test/run_screenshot_tests.sh
+
+# 更新基准截图
+./test/run_screenshot_tests.sh --update-baseline
+```
+
+**对比Jest**:
+
+| Jest | PI-PinBall |
+|------|------------|
+| jest-image-snapshot | screenshot_test_base.gd |
+| toMatchImageSnapshot | compare_screenshots() |
 
 ### ✅ 测试标准
 
