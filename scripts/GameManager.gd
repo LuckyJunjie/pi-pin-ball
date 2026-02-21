@@ -58,10 +58,10 @@ func add_score(points: int) -> void:
 	
 	# 应用角色得分加成
 	var character_bonus: float = 1.0
-	if character_system and character_system.has_method("get_multiplier"):
+	if character_system:
 		character_bonus = character_system.get_multiplier(character_system.current_character_id)
 	
-	var final_points: int = int(points * character_bonus)
+	var final_points: int = int(points * character_bonus * game_multiplier)
 	
 	game_score += final_points
 	total_score += final_points
@@ -74,7 +74,7 @@ func add_score(points: int) -> void:
 	emit_signal("score_changed", game_score)
 	
 	# 播放得分音效
-	SoundManager.play_sfx("score")
+	SoundManager.play_score()
 
 func get_multiplier() -> int:
 	return game_multiplier
@@ -83,7 +83,7 @@ func increase_multiplier() -> void:
 	if game_multiplier < 10:  # 最大倍率
 		game_multiplier += 1
 		emit_signal("multiplier_changed", game_multiplier)
-		SoundManager.play_sfx("multiplier")
+		SoundManager.play_multiplier()
 
 func reset_multiplier() -> void:
 	game_multiplier = 1
@@ -174,16 +174,7 @@ func _check_combo_timeout() -> void:
 		reset_multiplier()
 
 ## 音效管理
-
-static func play_sound(sound_name: String) -> void:
-	# 播放音效
-	if SoundManager.has_method("play_sfx"):
-		SoundManager.play_sfx(sound_name)
-
-static func play_music(music_name: String) -> void:
-	# 播放背景音乐
-	if SoundManager.has_method("play_music"):
-		SoundManager.play_music(music_name)
+## SoundManager 现在是单例，直接使用静态方法
 
 ## 保存/加载
 
