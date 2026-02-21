@@ -10,7 +10,7 @@ extends StaticBody2D
 @export var max_rotation: float = 60.0          # 最大旋转角度
 
 @export_group("物理参数")
-@export var rotation_speed: float = 30.0        # 旋转速度 (度/秒)
+@export var rotation_speed: float = 1500.0        # 旋转速度 (度/秒) - Open GDD规范
 @export var impact_force: float = 500.0         # 碰撞时施加的力
 
 @export_group("输入")
