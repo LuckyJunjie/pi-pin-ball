@@ -1,4 +1,5 @@
 extends Node
+class_name GameManager
 
 ## GameManager.gd - 游戏管理器
 ## 管理游戏状态、得分、倍率等核心逻辑
@@ -13,7 +14,7 @@ signal balls_changed(remaining: int)
 signal game_started()
 signal game_over()
 signal game_paused(is_paused: bool)
-signal ball_lost()
+signal ball_lost_signal()
 signal hit_registered(area: Node, points: int)
 
 ## 游戏状态
@@ -137,7 +138,7 @@ func ball_lost() -> void:
 	
 	remaining_balls -= 1
 	emit_signal("balls_changed", remaining_balls)
-	emit_signal("ball_lost")
+	emit_signal("ball_lost_signal")
 	
 	SoundManager.play_sfx("lose_ball")
 	

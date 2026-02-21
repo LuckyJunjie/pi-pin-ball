@@ -86,7 +86,7 @@ func _handle_scoring_area(area: ScoringArea) -> void:
 	_show_score_popup(global_position, total_points)
 	
 	# 播放音效
-	GameManager.play_sound("obstacle_hit")
+	SoundManager.play_sfx("obstacle_hit")
 
 func _handle_flipper_collision(flipper: Flipper) -> void:
 	# 挡板碰撞，增加弹射力
@@ -94,7 +94,7 @@ func _handle_flipper_collision(flipper: Flipper) -> void:
 		_apply_flipper_force(flipper)
 	
 	# 播放音效
-	GameManager.play_sound("flipper_click")
+	SoundManager.play_sfx("flipper_click")
 
 func _handle_drain_collision() -> void:
 	# 球掉落，游戏结束
