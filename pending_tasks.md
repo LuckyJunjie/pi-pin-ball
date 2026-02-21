@@ -33,8 +33,8 @@
 
 ### 🔧 基础设施
 - [x] scripts/ 目录存在，包含 37 个 GDScript 文件 ✅
-- [ ] 创建 test/ 目录 ⭐ (可自动执行)
-- [ ] Git 推送到 origin (24 commits 本地领先) ⚠️
+- [x] test/ 目录已创建，包含 7 个测试文件 ✅
+- [ ] Git 推送到 origin (2 commits 本地领先) ⚠️
 
 ---
 
