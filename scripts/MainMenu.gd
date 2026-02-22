@@ -20,6 +20,12 @@ signal quit_pressed()
 ## 生命周期
 
 func _ready() -> void:
+	# 检查测试模式 - 直接跳转到游戏
+	if TestManager.is_test_mode():
+		print("[MainMenu] 测试模式: 跳过菜单，直接进入游戏")
+		call_deferred("_goto_game_scene")
+		return
+	
 	# 连接按钮信号
 	start_button.pressed.connect(_on_start_pressed)
 	instructions_button.pressed.connect(_on_instructions_pressed)
@@ -32,6 +38,12 @@ func _ready() -> void:
 	# 播放菜单音乐 - 使用延迟调用确保 SoundManager 已加载
 	if has_node("/root/SoundManager"):
 		call_deferred("_play_menu_music")
+
+func _goto_game_scene() -> void:
+	# 测试模式: 直接切换到游戏场景
+	var scene_path = "res://scenes/Main.tscn"
+	print("[MainMenu] 测试模式切换到: ", scene_path)
+	get_tree().change_scene_to_file(scene_path)
 
 func _process(_delta: float) -> void:
 	# ESC键退出

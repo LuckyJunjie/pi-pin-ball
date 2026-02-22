@@ -31,6 +31,18 @@ func _ready() -> void:
 		left_flipper.global_position = Vector2(200, 500)
 	if right_flipper:
 		right_flipper.global_position = Vector2(900, 500)
+	
+	# 测试模式: 自动开始游戏
+	if TestManager.is_test_mode():
+		print("[Main] 测试模式: 自动开始游戏")
+		call_deferred("_auto_start_test_game")
+
+func _auto_start_test_game() -> void:
+	await get_tree().create_timer(0.5).timeout
+	GameManager.start_game()
+	if launcher and launcher.has_method("launch"):
+		launcher.launch()
+	print("[Main] 测试模式: 游戏已自动开始")
 
 func _process(_delta: float) -> void:
 	# 处理输入

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameManager="res://scripts/GameManager.gd"
 SoundManager="res://scripts/SoundManager.gd"
 ScreenshotManager="res://scripts/ScreenshotManager.gd"
+TestManager="*res://scripts/TestManager.gd"
 
 [display]
 
