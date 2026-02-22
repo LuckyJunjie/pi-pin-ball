@@ -54,8 +54,15 @@ func _on_start_pressed() -> void:
 	_play_sound("button_click")
 	emit_signal("start_game_pressed")
 	
-	# 切换到游戏场景
-	get_tree().change_scene_to_file("res://scenes/Main.tscn")
+	# 切换到游戏场景 - 添加错误处理
+	var scene_path = "res://scenes/Main.tscn"
+	print("[MainMenu] Attempting to change scene to: ", scene_path)
+	
+	if ResourceLoader.exists(scene_path):
+		get_tree().change_scene_to_file(scene_path)
+		print("[MainMenu] Scene change initiated successfully")
+	else:
+		push_error("[MainMenu] Scene file not found: ", scene_path)
 
 func _on_instructions_pressed() -> void:
 	_play_sound("button_click")

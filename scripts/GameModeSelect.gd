@@ -49,7 +49,16 @@ func _on_mode_selected(mode_id: int) -> void:
 	selected_mode = mode_id
 	# 发送模式选择信号
 	mode_selected.emit(selected_mode, selected_difficulty)
-	get_tree().change_scene_to_file("res://scenes/Main.tscn")
+	
+	# 切换场景 - 添加错误处理
+	var scene_path = "res://scenes/Main.tscn"
+	print("[GameModeSelect] Attempting to change scene to: ", scene_path)
+	
+	if ResourceLoader.exists(scene_path):
+		get_tree().change_scene_to_file(scene_path)
+		print("[GameModeSelect] Scene change initiated successfully")
+	else:
+		push_error("[GameModeSelect] Scene file not found: ", scene_path)
 
 func _on_back_pressed() -> void:
 	back_pressed.emit()
