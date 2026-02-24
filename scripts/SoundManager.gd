@@ -65,8 +65,8 @@ func _play_sfx_internal(sound_name: String) -> void:
 	# 查找空闲的播放器
 	var player = _get_available_sfx_player()
 	if player:
-		# 尝试加载音效文件
-		var sound_path = "res://assets/audio/sfx/" + sound_name + ".wav"
+		# 尝试加载音效文件 (修正路径: assets/sfx/)
+		var sound_path = "res://assets/sfx/" + sound_name + ".wav"
 		if ResourceLoader.exists(sound_path):
 			player.stream = load(sound_path)
 			player.play()
