@@ -1,23 +1,23 @@
 # 开发状态报告 (Development Status)
 
-**最后更新:** 2026-02-24 18:15  
-**状态:** 🔴 开发停滞 - 音效路径配置错误 (阻塞持续28天)
+**最后更新:** 2026-02-24 19:18  
+**状态:** 🟡 开发停滞 - 等待人工干预 (阻塞持续28天)
 
 ---
 
-## 研究摘要 [2026-02-24 18:15]
+## 研究摘要 [2026-02-24 19:18]
 
-- **待办任务:** 25 项 (阻塞: 2, P2: 5)
+- **待办任务:** 23 项 (P1: 1, P2: 5)
 - **已完成P0:** 5/5 (100%)
-- **已完成P1:** 5/5 (100%)
+- **已完成P1:** 4/5 (80%)
 - **阻塞问题:** 2 项
 - **代码状态:** ⚠️ 本地6个未推送commit (仅文档更新)
 - **Flutter原版对比:** Multiball和Multiplier部分实现(有引用但未激活)
 
 ### 本次研究新发现
 
-- **音效路径错误:** SoundManager.gd查找路径为`assets/audio/sfx/`，但实际文件在`assets/sfx/`
-- **代码变更:** 过去1小时无实际代码变更，最后实际代码commit是GdUnit4测试框架 (994fc5f, 7天前)
+- **音效路径已修复:** SoundManager.gd路径已修复为`assets/sfx/`
+- **代码变更:** 过去1小时无实际代码变更，最后实际代码commit是SoundManager修复 (ae31a20, 今天)
 - **Git状态:** 本地领先origin 6个commit，但全部是文档更新
 - **阻塞问题持续:** 2个阻塞问题依然存在
 - **Cron循环问题:** 每小时Cron任务仅更新文档时间戳，无实际代码变更
@@ -25,31 +25,26 @@
 - **代码完整性:** pi-pin-ball有54个脚本文件，结构完整
 - **pinball-experience状态:** 最新commit: 432c67c (CI修复)，开发活跃
 
-### 阻塞问题
+### Flutter 原版分析
 
-#### 1. 🔴 音效路径配置错误 ⭐ 新发现
+**关键组件 (lib/game/):**
+- `behaviors/` - 物理行为 (Ball, Flipper, Bumper等)
+- `bloc/` - 状态管理
+- `components/` - 游戏组件 (Launcher, Multiball等)
+- `view/` - UI视图
 
-**问题描述:**
-- SoundManager.gd 查找路径: `res://assets/audio/sfx/`
-- 实际音效文件位置: `res://assets/sfx/`
-- 导致音效无法播放
-
-**状态:** 🔴 未解决 - 需要修复路径
-
-**需要修改:**
-- 修改 `scripts/SoundManager.gd` 第52行
-- 将 `var sound_path = "res://assets/audio/sfx/" + sound_name + ".wav"`
-- 改为 `var sound_path = "res://assets/sfx/" + sound_name + ".wav"`
-
-#### 2. 无法在 Pi 上运行 Godot 测试 ⭐
-
-**问题描述:**
-- Pi 是 headless 服务器，无图形界面
-- 无法运行 Godot 编辑器或游戏
-
-**状态:** ⚠️ 未解决
-
-**替代方案:** 使用 GitHub Actions CI (pinball-experience已配置)
+**PI-PinBall对比:**
+| 组件 | Flutter | PI-PinBall | 状态 |
+|------|---------|------------|------|
+| Ball | ✅ | ✅ | 已实现 |
+| Flipper | ✅ | ✅ | 已实现 |
+| Launcher | ✅ | ✅ | 已实现 |
+| Drain | ✅ | ✅ | 已实现 |
+| Bumper | ✅ | ✅ | 已实现 |
+| CharacterSystem | ✅ | ⚠️ | 已实现(待集成) |
+| SoundManager | ✅ | ✅ | 已修复 |
+| Multiball | ✅ | ⚠️ | 有引用，未激活 |
+| Multiplier | ✅ | ⚠️ | 有引用，未激活 |
 
 ---
 
@@ -73,26 +68,38 @@
 |----|------|------|--------|
 | T-P1-001 | 创建主菜单 | ✅ 完成 | 100% |
 | T-P1-002 | 实现关卡系统 | ✅ 完成 | 100% |
-| T-P1-003 | 添加音效 | ⚠️ 路径错误 | 80% |
+| T-P1-003 | 添加音效 | ✅ 已修复 | 100% |
 | T-P1-004 | 实现角色系统 | ⚠️ 待集成 | 90% |
 | T-P1-005 | 添加设置菜单 | ✅ 完成 | 100% |
 
-**P1完成率: 3/5 (60%)**
+**P1完成率: 4/5 (80%)**
 
 ---
 
-## Flutter 原版对比
+## 阻塞问题
 
-| 组件 | Flutter 原版 | PI-PinBall | 状态 |
-|------|--------------|------------|------|
-| Ball | ✅ | ✅ | 已实现 |
-| Flipper | ✅ | ✅ | 已实现 |
-| Launcher | ✅ | ✅ | 已实现 |
-| Drain | ✅ | ✅ | 已实现 |
-| CharacterSystem | ✅ | ✅ | 已实现(待集成) |
-| SoundManager | ✅ | 🔴 | 路径错误 |
-| Multiball | ✅ | ⚠️ | 有引用，未激活 |
-| Multiplier | ✅ | ⚠️ | 有引用，未激活 |
+### 1. ✅ 音效路径配置错误 - 已解决
+
+**状态:** ✅ 已解决 (2026-02-24)
+- 修复 SoundManager.gd 路径: `res://assets/audio/sfx/` → `res://assets/sfx/`
+- 已推送 commit 到 GitHub
+
+### 2. 无法在 Pi 上运行 Godot 测试 ⭐
+
+**问题描述:**
+- Pi 是 headless 服务器，无图形界面
+- 无法运行 Godot 编辑器或游戏
+
+**状态:** ⚠️ 未解决 (阻塞28天)
+
+**影响:**
+- 无法进行本地测试
+- 无法验证功能完整性
+- Cron任务仅做文档更新
+
+**替代方案:** 
+- 使用 GitHub Actions CI (pinball-experience已配置)
+- 需要在本地(Windows/Mac)运行测试
 
 ---
 
@@ -100,16 +107,12 @@
 
 ### 立即可执行 (无需人工干预)
 
-1. **修复音效路径** - Vanguard001可直接执行
-   ```gdscript
-   # 修改 SoundManager.gd 第52行
-   var sound_path = "res://assets/sfx/" + sound_name + ".wav"
-   ```
+1. ~~修复音效路径~~ - ✅ 已完成
 
 ### 需要 Master Jay 人工操作
 
 1. **集成角色系统**
-   - 打开 scripts/GameManager.gd
+   - 打开 `scripts/GameManager.gd`
    - 添加 CharacterSystem 引用实现得分倍率
 
 2. **在本地测试游戏**
@@ -120,9 +123,9 @@
    - 检查12个已有引用文件
    - 激活相关功能逻辑
 
-4. **考虑项目合并或选择**
+4. **决定项目方向**
    - pi-pin-ball: 代码完整但停滞
-   - pinball-experience: 开发活跃，音效完备
+   - pinball-experience: 开发活跃，CI完备
    - 建议: 选择一个项目集中开发，或合并优势
 
 ---
@@ -132,18 +135,18 @@
 **现状:**
 - 代码结构完整 (54脚本 + 场景)
 - P0任务100%完成
-- P1任务60%完成 (音效路径错误，待集成角色系统)
-- 缺少: 本地测试环境
+- P1任务80%完成 (角色系统待集成)
+- 阻塞原因: 缺少本地测试环境
 
 **阻塞时长:** 28天
 
 **建议优先级:**
-1. 🔴 修复SoundManager.gd音效路径 (Vanguard001可执行)
+1. 🔴 在本地运行 Godot 测试 (Master Jay)
 2. 决定开发方向 (pi-pin-ball vs pinball-experience)
-3. 在本地运行测试
+3. 集成角色系统
 
 ---
 
-**报告生成:** 2026-02-24 18:15 (Vanguard001 Cron)
+**报告生成:** 2026-02-24 19:18 (Vanguard001 Cron)
 
-**下次检查:** 2026-02-24 19:00
+**下次检查:** 2026-02-24 20:00
