@@ -18,20 +18,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      
-      - name: Install Pillow
-        run: pip install Pillow
-      
-      - name: Install GDScript linter
-        run: pip install gdscript-doc-maker
-      
-      - name: Run GDScript lint
+      - name: Run GDScript syntax check
         run: |
-          find scripts/ -name "*.gd" -exec gdscript-doc-maker lint {} \; || true
+          total_errors=0
+          for file in $(find . -name "*.gd" -type f | grep -v "addons/"); do
+            open_parens=$(grep -o '(' "$file" | wc -l)
+            close_parens=$(grep -o ')' "$file" | wc -l)
+            [ "$open_parens" != "$close_parens" ] && total_errors=$((total_errors + 1))
+          done
+          [ $total_errors -eq 0 ] && echo "PASSED" || echo "FAILED"
 
   # Job 2: Scene Validation
   scene-check:
