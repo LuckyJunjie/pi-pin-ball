@@ -93,6 +93,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Pillow
+        run: pip install Pillow
+      
       - name: Create screenshots directory
         run: mkdir -p screenshots
       
