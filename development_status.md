@@ -1,11 +1,11 @@
 # 开发状态报告 (Development Status)
 
-**最后更新:** 2026-02-24 21:21  
+**最后更新:** 2026-02-24 22:23  
 **状态:** 🟡 开发停滞 - 需要人工干预
 
 ---
 
-## 研究摘要 [2026-02-24 21:21]
+## 研究摘要 [2026-02-24 22:23]
 
 - **待办任务:** 6 项 (P1: 1, P2: 5)
 - **已完成P0:** 5/5 (100%)
@@ -16,31 +16,17 @@
 ### 本次研究新发现
 
 - **pi-pin-ball:** 代码无变化，最后commit是音效路径修复(ae31a20)
-- **pinball-experience:** 开发活跃，最新commit持续更新
+- **pinball-experience:** 开发活跃，最新commit 432c67c - CI修复
 - **阻塞现状:** 核心问题仍是Pi无法运行Godot编辑器
 - **Cron循环:** 每小时任务仅更新文档，无实际代码变更
 - **建议:** 应集中开发pinball-experience项目
 
-### Flutter 原版分析
+### 项目状态对比
 
-**关键组件 (lib/game/):**
-- `behaviors/` - 物理行为 (Ball, Flipper, Bumper等)
-- `bloc/` - 状态管理
-- `components/` - 游戏组件 (Launcher, Multiball等)
-- `view/` - UI视图
-
-**PI-PinBall对比:**
-| 组件 | Flutter | PI-PinBall | 状态 |
-|------|---------|------------|------|
-| Ball | ✅ | ✅ | 已实现 |
-| Flipper | ✅ | ✅ | 已实现 |
-| Launcher | ✅ | ✅ | 已实现 |
-| Drain | ✅ | ✅ | 已实现 |
-| Bumper | ✅ | ✅ | 已实现 |
-| CharacterSystem | ✅ | ⚠️ | 已实现(待集成) |
-| SoundManager | ✅ | ✅ | 已修复 |
-| Multiball | ✅ | ⚠️ | 有引用，未激活 |
-| Multiplier | ✅ | ⚠️ | 有引用，未激活 |
+| 项目 | 脚本数 | 场景数 | CI | 开发活跃度 | 推荐 |
+|------|--------|--------|-----|------------|------|
+| pi-pin-ball | 54 | 20+ | ❌ | 低 | ⏸️ 暂停 |
+| pinball-experience | 18 | 6 | ✅ | 高 | 🔥 主力 |
 
 ---
 
@@ -84,13 +70,14 @@
 **问题描述:**
 - Pi 是 headless 服务器，无图形界面
 - 无法运行 Godot 编辑器或游戏
+- Cron任务仅能执行文档更新
 
 **状态:** ⚠️ 未解决 (阻塞30天)
 
 **影响:**
 - 无法进行本地测试
 - 无法验证功能完整性
-- Cron任务仅做文档更新
+- 代码无法实际运行验证
 
 **替代方案:** 
 - 使用 GitHub Actions CI (pinball-experience已配置)
@@ -98,14 +85,26 @@
 
 ---
 
-## 项目对比
+## pinball-experience 进度
 
-| 项目 | 代码状态 | CI配置 | 开发活跃度 | 推荐 |
-|------|----------|--------|------------|------|
-| pi-pin-ball | 完整(54脚本) | ❌ | 低 | ⏸️ 暂停 |
-| pinball-experience | 基础框架 | ✅ | 高 | 🔥 主力 |
+**当前阶段:** 0.1-0.5 功能验证
 
-**建议:** 集中开发pinball-experience项目
+### 已完成 ✅
+- [x] 发射器 (Launcher.gd)
+- [x] 挡板 (Flipper.gd)
+- [x] 球 (Ball.gd)
+- [x] 排水口 (Drain.gd)
+- [x] 障碍物 (Obstacle.gd)
+- [x] 游戏管理器 (GameManager.gd)
+- [x] 音效管理器 (SoundManager.gd)
+- [x] UI (UI.gd)
+- [x] GitHub Actions CI 修复
+
+### 待执行 📋
+- [ ] 在 Godot 中运行验证
+- [ ] 验证 0.1-0.5 各功能
+- [ ] 安装 GUT 测试框架
+- [ ] 运行单元测试
 
 ---
 
@@ -119,7 +118,7 @@
 
 1. **决定开发方向**
    - 建议: 集中开发pinball-experience (有CI，活跃)
-   - pi-pin-ball代码可作为参考
+   - pi-pin-ball代码可作为技术参考
 
 2. **在本地测试游戏**
    - 克隆pinball-experience到Windows/Mac
@@ -147,6 +146,6 @@
 
 ---
 
-**报告生成:** 2026-02-24 21:21 (Vanguard001 Cron)
+**报告生成:** 2026-02-24 22:23 (Vanguard001 Cron)
 
-**下次检查:** 2026-02-24 22:00
+**下次检查:** 2026-02-24 23:00
